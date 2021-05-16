@@ -6,10 +6,9 @@ import os.path
 
 import ffmpeg
 
+url = input("Enter the url of the video\t :")
 
-
-yt = YouTube('https://www.youtube.com/watch?v=FLrWfrFIMMU',on_progress_callback=on_progress)
-
+yt = YouTube(url,on_progress_callback=on_progress)
 
 
 #filtering fps and qualities
@@ -41,7 +40,6 @@ root.withdraw()
 root.directory = filedialog.askdirectory()
 
 
-
 video.download(output_path=root.directory,filename="video")
 
 #audio file 
@@ -51,13 +49,10 @@ audio_file_extension = os.path.splitext(audio_file_name)[1]
 audio.download(output_path=root.directory,filename="audio")
 
 
-#encoding adaptive videos
-
 video_stream = ffmpeg.input(root.directory+'/video.mp4')
 audio_stream = ffmpeg.input(root.directory+'/audio'+audio_file_extension)
 ffmpeg.output(audio_stream, video_stream, root.directory+'/'+video_file_name ,vcodec="copy").run()
 
-print("done")
 root.destroy()
 root.mainloop()
 
