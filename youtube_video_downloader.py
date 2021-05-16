@@ -56,6 +56,10 @@ video_stream = ffmpeg.input(root.directory+'/video.mp4')
 audio_stream = ffmpeg.input(root.directory+'/audio'+audio_file_extension)
 ffmpeg.output(audio_stream, video_stream, root.directory+'/'+video_file_name ,vcodec="copy").run()
 
+#deleting the video and audio file after encoding
+os.remove(root.directory+'/video.mp4')
+os.remove(root.directory+'/audio'+audio_file_extension)
+
 root.destroy()
 root.mainloop()
 
