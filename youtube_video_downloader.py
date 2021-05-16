@@ -1,5 +1,5 @@
 from pytube import YouTube
-from pytube.cli import on_progress #use tdqm for progress bar
+from pytube.cli import on_progress 
 from  tkinter import *
 from tkinter import filedialog
 import os.path
@@ -11,7 +11,6 @@ url = input("Enter the url of the video\t :")
 yt = YouTube(url,on_progress_callback=on_progress)
 
 
-#filtering fps and qualities
 fps = [24,25,30,60]
 quality = ["360p","480p","720p","1080p"]
 options = []
@@ -42,7 +41,7 @@ root.directory = filedialog.askdirectory()
 
 video.download(output_path=root.directory,filename="video")
 
-#audio file 
+
 audio = yt.streams.get_audio_only()
 audio_file_name = audio.default_filename
 audio_file_extension = os.path.splitext(audio_file_name)[1]
